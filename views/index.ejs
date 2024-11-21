@@ -1,113 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <title>Faraz Document</title>
-  <style>
-    body {
-      background-color: #556371; /* Light gray */
-      font-family: 'Times New Roman', Times, serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <title>Faraz Document</title>
+    <style>
+      body {
+        background-color: #556371; /* Light gray */
+        font-family: "Times New Roman", Times, serif;
+      }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
 
-    h1 {
-      color: #000000; /* Blue */
-    }
+      h1 {
+        color: #000000; /* Blue */
+      }
 
-    form {
-      margin-bottom: 20px;
-    }
+      form {
+        margin-bottom: 20px;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
 
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #dee2e6; /* Grayish */
-    }
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #dee2e6; /* Grayish */
+      }
 
-    th {
-      background-color: #28323c; /* Blue */
-      color: #fff;
-      text-align: left;
-    }
+      th {
+        background-color: #28323c; /* Blue */
+        color: #fff;
+        text-align: left;
+      }
 
-    td a {
-      color: #00fff2; /* Blue */
-      text-decoration: none;
-    }
+      td a {
+        color: #00fff2; /* Blue */
+        text-decoration: none;
+      }
 
-    td a:hover {
-      text-decoration: underline;
-    }
+      td a:hover {
+        text-decoration: underline;
+      }
 
-    .btn-success {
-      background-color: #13db41; /* Green */
-      border-color: #28a745; /* Green */
-    }
+      .btn-success {
+        background-color: #13db41; /* Green */
+        border-color: #28a745; /* Green */
+      }
 
-    .btn-success:hover {
-      background-color: #218838; /* Darker green */
-      border-color: #1e7e34; /* Darker green */
-    }
+      .btn-success:hover {
+        background-color: #218838; /* Darker green */
+        border-color: #1e7e34; /* Darker green */
+      }
 
-    .btn-danger {
-      background-color: #dc3545; /* Red */
-      border-color: #dc3545; /* Red */
-      color: #fff;
-    }
+      .btn-danger {
+        background-color: #dc3545; /* Red */
+        border-color: #dc3545; /* Red */
+        color: #fff;
+      }
 
-    .btn-danger:hover {
-      background-color: #c82333; /* Darker red */
-      border-color: #bd2130; /* Darker red */
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>URL Shrinker by ~~ <u>FARAZ AKHTER</u></h1>
-    <form action="/shortUrls" method="POST" class="my-4 form-inline">
-      <label for="fullUrl" class="sr-only">Url</label>
-      <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
-      <button class="btn btn-success" type="submit">Shrink</button>
-    </form>
-    
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>Full URL</th>
-          <th>Short URL</th>
-          <th>Clicks</th>
-          <th>Delete</th> <!-- New column header for deletion -->
-        </tr>
-      </thead>
-      <tbody>
-        <% shortUrls.forEach(shortUrl => { %>
+      .btn-danger:hover {
+        background-color: #c82333; /* Darker red */
+        border-color: #bd2130; /* Darker red */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>URL Shrinker by ~~ <u>FARAZ AKHTER</u></h1>
+      <form action="/shortUrls" method="POST" class="my-4 form-inline">
+        <label for="fullUrl" class="sr-only">Url</label>
+        <input
+          required
+          placeholder="Url"
+          type="url"
+          name="fullUrl"
+          id="fullUrl"
+          class="form-control col mr-2"
+        />
+        <button class="btn btn-success" type="submit">Shrink</button>
+      </form>
+
+      <table class="table table-striped table-responsive">
+        <thead>
+          <tr>
+            <th>Full URL</th>
+            <th>Short URL</th>
+            <th>Clicks</th>
+            <th>Delete</th>
+            <!-- New column header for deletion -->
+          </tr>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(shortUrl => { %>
           <tr>
             <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
             <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
             <td><%= shortUrl.clicks %></td>
             <td>
-              <form action="/deleteUrl" method="POST"> <!-- Form to handle deletion -->
-                <input type="hidden" name="urlId" value="<%= shortUrl.id %>">
+              <form action="/deleteUrl" method="POST">
+                <!-- Form to handle deletion -->
+                <input type="hidden" name="urlId" value="<%= shortUrl.id %>" />
                 <button class="btn btn-danger" type="submit">Delete</button>
               </form>
             </td>
           </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-</body>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>
